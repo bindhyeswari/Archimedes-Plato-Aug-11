@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bae.css"/>
+    <title>Converter</title>
+    <style>
+        div.panel {
+            word-break: break-all;
+        }
+    </style>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('loaded ... ');
+
+            // get access to the file that was loaded ...
+
+            document.body.firstElementChild.addEventListener('change', function () {
+                console.log('changed ... ');
+                console.log(this.files);
+
+                // HTML5 filereader api
+
+                var filereader = new FileReader();
+                filereader.addEventListener('loadend', function () {
+                    console.log(filereader.result);
+                    document.querySelector('div.panel').innerHTML = filereader.result;
+                });
+                filereader.readAsDataURL(this.files[0]);
+
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+
+    <input type="file"/>
+    <div class="panel">
+
+
+    </div>
+    img
+</body>
+</html>
